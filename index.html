@@ -32,6 +32,7 @@ header{
   display:flex;
   justify-content:center;
   align-items:center;
+  justify-items:center;
   padding:0;
   line-height:0;
 }
@@ -41,7 +42,7 @@ header{
   max-width:1280px;
   height:220px;
   object-fit:cover;
-  object-position:center center;
+  object-position:center 45%;
 }
 .wrap{max-width:1280px;margin:0 auto;padding:20px}
 .section{margin-top:18px}
@@ -58,22 +59,22 @@ header{
 
 /* Top utility image buttons */
 .utility-row{
-  margin:14px auto 18px;
+  margin:10px auto 12px;
   position:relative;
   z-index:5;
-  padding:14px 18px;
+  padding:8px 16px;
   display:grid;
-  grid-template-columns:280px 280px 1fr;
+  grid-template-columns:1fr 1fr 1fr;
   align-items:center;
-  gap:22px;
+  gap:14px;
   background:rgba(255,255,255,.94);
   backdrop-filter:blur(6px);
   border:1px solid rgba(203,213,225,.72);
   box-shadow:0 18px 42px rgba(15,23,42,.14);
 }
 .nav-button{
-  width:280px;
-  height:78px;
+  width:320px;
+  height:72px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -88,24 +89,25 @@ header{
   width:100%;
   height:100%;
   object-fit:contain;
+  padding:4px 10px;
   object-position:center;
   display:block;
   border-radius:12px;
 }
-.procedure-link-main{justify-self:end}
+.procedure-link-main{justify-self:center}
 .hsi-dropdown{
   position:relative;
   border:none;
   background:transparent;
-  width:280px;
-  height:78px;
+  width:320px;
+  height:72px;
   overflow:visible;
 }
 .hsi-dropdown summary{
   list-style:none;
   cursor:pointer;
-  width:280px;
-  height:78px;
+  width:320px;
+  height:72px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -119,7 +121,7 @@ header{
 .hsi-dropdown summary::after{display:none}
 .hsi-menu{
   position:absolute;
-  top:88px;
+  top:72px;
   left:0;
   z-index:50;
   width:310px;
@@ -206,7 +208,7 @@ tbody tr.aged td{background:#fff5f5}
 </head>
 <body>
 <header>
-  <img class="header-banner" src="assets/banner_CBPS Safety HQ.png" alt="Coastal Bend Power Services Safety HQ banner">
+  <img class="header-banner" src="assets/banner_CBPS Safety HQ.png?v=final" alt="Coastal Bend Power Services Safety HQ banner">
 </header>
 
 <main class="wrap">
