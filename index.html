@@ -245,9 +245,6 @@ tbody tr:hover{filter:brightness(.985)}
 .summary-pill.orange{background:#ffedd5;color:#9a3412;border-color:#fdba74}
 .summary-pill.green{background:#dcfce7;color:#166534;border-color:#86efac}
 .summary-pill.neutral{background:#e2e8f0;color:#334155;border-color:#cbd5e1}
-.collapse-toggle{font-size:12px;font-weight:900;color:var(--brand-dark);background:#eef4fb;border:1px solid var(--line);border-radius:999px;padding:7px 10px;white-space:nowrap}
-details[open] .collapse-toggle::after{content:"Hide"}
-details:not([open]) .collapse-toggle::after{content:"Show"}
 .collapse-body{padding:0 16px 16px}
 .footer{margin-top:20px;color:var(--muted);text-align:center;font-size:13px}
 
@@ -257,16 +254,51 @@ details:not([open]) .collapse-toggle::after{content:"Show"}
 }
 @media(max-width:620px){
   .header-banner{height:auto;min-height:0;object-fit:contain}
-  .wrap{padding:14px}
-  .utility-row{display:flex;flex-direction:column;align-items:center;padding:12px}
-  .nav-button,.hsi-dropdown,.hsi-dropdown summary,.procedure-link-main{width:100%;max-width:320px;height:89px}
-  .hsi-menu{position:static;width:100%;grid-template-columns:1fr;margin-top:10px}
-  .metric-grid,.metric-grid.two,.quarter-grid{grid-template-columns:1fr}
+  .wrap{padding:10px}
+  .utility-row{display:flex;flex-direction:column;align-items:center;padding:8px;gap:6px;min-height:0}
+  .nav-button,.hsi-dropdown,.hsi-dropdown summary,.procedure-link-main{width:100%;max-width:260px;height:70px}
+  .hsi-menu{position:static;width:100%;grid-template-columns:1fr;margin-top:8px}
+  .snapshot-grid{grid-template-columns:1fr;gap:10px}
+  .quarter-grid{grid-template-columns:1fr}
+  .quarter:not(.active){display:none}
+  .totals-grid{grid-template-columns:repeat(3,1fr);gap:7px}
+  .total-card{min-height:86px;padding:10px}
+  .total-card .metric-label{font-size:9px;letter-spacing:.04em}
+  .total-card .metric-value{font-size:22px}
+  .metric-grid,.metric-grid.two{grid-template-columns:1fr}
   .metric-value{font-size:28px}
-  .panel{padding:12px}
-  table{font-size:13px}
-  th,td{padding:10px;font-size:13px}
-  .section-title{font-size:20px}
+  .panel{padding:12px;border-radius:16px}
+  .collapse-panel{padding:0}
+  .collapse-panel summary{display:block;padding:12px}
+  .collapse-badges{justify-content:flex-start;margin-top:8px;gap:6px}
+  .summary-pill{font-size:11px;padding:6px 9px}
+  .collapse-body{padding:0 12px 12px}
+  .status-layout{grid-template-columns:1fr;gap:10px}
+  .mobile-secondary-section{display:none}
+  .mobile-secondary-row{display:none}
+  .table-wrap{overflow-x:visible}
+  table,thead,tbody,tr,td{display:block;width:100%;min-width:0}
+  table{min-width:0;background:transparent}
+  thead{display:none}
+  tbody tr{border:1px solid var(--line);border-radius:12px;margin:8px 0;padding:8px;background:#fff;box-shadow:0 5px 14px rgba(15,23,42,.05)}
+  tbody tr.row-red{background:var(--red-bg);border-color:var(--red-line)}
+  tbody tr.row-orange{background:var(--orange-bg);border-color:var(--orange-line)}
+  tbody tr.row-green{background:var(--green-bg);border-color:var(--green-line)}
+  tbody tr.row-neutral{background:var(--neutral-bg);border-color:var(--neutral-line)}
+  td{border-bottom:0;padding:5px 4px;font-size:12px;display:grid;grid-template-columns:78px 1fr;gap:8px;align-items:start}
+  td::before{font-weight:900;color:var(--muted);text-transform:uppercase;font-size:9px;letter-spacing:.05em}
+  .monthly-table td:nth-child(1)::before{content:"Employee"}
+  .monthly-table td:nth-child(2)::before{content:"EQ #"}
+  .monthly-table td:nth-child(3)::before{content:"Status"}
+  .training-table td:nth-child(1)::before{content:"Employee"}
+  .training-table td:nth-child(2)::before{content:"Training"}
+  .training-table td:nth-child(3)::before{content:"Status"}
+  .pill{font-size:11px;padding:4px 8px}
+  .status-card-header{padding:10px 12px}
+  .status-card-header h3{font-size:15px}
+  .status-count{font-size:11px}
+  .section-title{font-size:18px}
+  .section-note{font-size:12px}
 }
 </style>
 </head>
@@ -334,7 +366,7 @@ details:not([open]) .collapse-toggle::after{content:"Show"}
       <p class="section-note">Company performance snapshot.</p>
       <div class="totals-grid">
         <div class="total-card">
-          <div class="metric-label">Total Man Hours</div>
+          <div class="metric-label">Man Hours</div>
           <div class="metric-value">16,951</div>
         </div>
         <div class="total-card">
@@ -349,16 +381,15 @@ details:not([open]) .collapse-toggle::after{content:"Show"}
     </div>
   </section>
 
-    <details class="panel collapse-panel" open>
+    <details class="panel collapse-panel">
       <summary>
         <div class="collapse-title-wrap">
-          <h2 class="section-title">Monthly Status</h2>
+          <h2 class="section-title">Monthly Safety Equipment Checklist Status</h2>
           <p class="section-note">May Monthlys are due by <span class="due-highlight overdue">05/08/2026</span>. Required for all employees assigned a company vehicle.</p>
         </div>
         <div class="collapse-badges">
           <span class="summary-pill red">5 Overdue / Missing</span>
           <span class="summary-pill green">15 Completed</span>
-          <span class="collapse-toggle"></span>
         </div>
       </summary>
       <div class="collapse-body">
@@ -369,7 +400,7 @@ details:not([open]) .collapse-toggle::after{content:"Show"}
             <span class="status-count">5 items</span>
           </div>
           <div class="table-wrap">
-            <table class="sortable-table">
+            <table class="sortable-table monthly-table">
               <thead><tr><th>Employee</th><th>EQ #</th><th>Status</th></tr></thead>
               <tbody>
                 <tr class="row-red"><td>Dalan Willberg</td><td>V005</td><td><span class="pill pill-red">1d Overdue</span></td></tr>
@@ -382,13 +413,13 @@ details:not([open]) .collapse-toggle::after{content:"Show"}
           </div>
         </section>
 
-        <section class="status-card">
+        <section class="status-card mobile-secondary-section">
           <div class="status-card-header">
             <h3>Completed</h3>
             <span class="status-count">15 items</span>
           </div>
           <div class="table-wrap">
-            <table class="sortable-table">
+            <table class="sortable-table monthly-table">
               <thead><tr><th>Employee</th><th>EQ #</th><th>Status</th></tr></thead>
               <tbody>
                 <tr class="row-green"><td>Lee Hasdorff</td><td>V026</td><td><span class="pill pill-green">05/01/2026</span></td></tr>
@@ -414,7 +445,7 @@ details:not([open]) .collapse-toggle::after{content:"Show"}
       </div>
     </details>
 
-    <details class="panel collapse-panel" open>
+    <details class="panel collapse-panel">
       <summary>
         <div class="collapse-title-wrap">
           <h2 class="section-title">Training Status</h2>
@@ -423,12 +454,11 @@ details:not([open]) .collapse-toggle::after{content:"Show"}
         <div class="collapse-badges">
           <span class="summary-pill neutral">0 Overdue</span>
           <span class="summary-pill orange">5 Due Within 7 Days</span>
-          <span class="collapse-toggle"></span>
         </div>
       </summary>
       <div class="collapse-body">
 <div class="table-wrap status-card">
-        <table class="sortable-table">
+        <table class="sortable-table training-table">
           <thead><tr><th>Employee</th><th>Training</th><th>Status</th></tr></thead>
           <tbody>
             <tr class="row-orange"><td>Weston Haworth</td><td>Confined Space Entry - Permit Required</td><td><span class="pill pill-orange">Due 05/09/2026</span></td></tr>
@@ -436,24 +466,24 @@ details:not([open]) .collapse-toggle::after{content:"Show"}
             <tr class="row-orange"><td>Philip Kollaja</td><td>Confined Space Entry - Permit Required</td><td><span class="pill pill-orange">Due 05/14/2026</span></td></tr>
             <tr class="row-orange"><td>Lee Hasdorff</td><td>Confined Space Entry - Permit Required</td><td><span class="pill pill-orange">Due 05/16/2026</span></td></tr>
             <tr class="row-orange"><td>Paul Gaida</td><td>Confined Space Entry - Permit Required</td><td><span class="pill pill-orange">Due 05/17/2026</span></td></tr>
-            <tr class="row-neutral"><td>Lee Hasdorff</td><td>Forklift and Powered Industrial Trucks</td><td><span class="pill pill-neutral">Due 05/23/2026</span></td></tr>
-            <tr class="row-neutral"><td>Philip Kollaja</td><td>Forklift and Powered Industrial Trucks</td><td><span class="pill pill-neutral">Due 05/26/2026</span></td></tr>
-            <tr class="row-neutral"><td>Weston Haworth</td><td>Personal Protective Equipment for General Industry</td><td><span class="pill pill-neutral">Due 05/28/2026</span></td></tr>
-            <tr class="row-neutral"><td>Weston Haworth</td><td>Electrical Safety: General Awareness</td><td><span class="pill pill-neutral">Due 05/28/2026</span></td></tr>
-            <tr class="row-neutral"><td>Cody Geffert</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Cody Geffert</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Philip Kollaja</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Philip Kollaja</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Lee Hasdorff</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Lee Hasdorff</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Zach Young</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Zach Young</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Weston Haworth</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Weston Haworth</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Marshall Mach</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Marshall Mach</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Zach Hasdorff</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
-            <tr class="row-neutral"><td>Zach Hasdorff</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Lee Hasdorff</td><td>Forklift and Powered Industrial Trucks</td><td><span class="pill pill-neutral">Due 05/23/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Philip Kollaja</td><td>Forklift and Powered Industrial Trucks</td><td><span class="pill pill-neutral">Due 05/26/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Weston Haworth</td><td>Personal Protective Equipment for General Industry</td><td><span class="pill pill-neutral">Due 05/28/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Weston Haworth</td><td>Electrical Safety: General Awareness</td><td><span class="pill pill-neutral">Due 05/28/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Cody Geffert</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Cody Geffert</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Philip Kollaja</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Philip Kollaja</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Lee Hasdorff</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Lee Hasdorff</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Zach Young</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Zach Young</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Weston Haworth</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Weston Haworth</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Marshall Mach</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Marshall Mach</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Zach Hasdorff</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral mobile-secondary-row"><td>Zach Hasdorff</td><td>Lead Awareness</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
           </tbody>
         </table>
       </div>
