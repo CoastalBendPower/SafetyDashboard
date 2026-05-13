@@ -349,7 +349,7 @@ tbody tr:hover{filter:brightness(.985)}
 
   <section class="data-grid">
     <section class="snapshot-grid">
-    <details class="panel collapse-panel quarterly-collapse">
+    <details class="panel collapse-panel quarterly-collapse" open>
       <summary>
         <div class="collapse-title-wrap">
           <h2 class="section-title">📊 Quarterly OSHA Snapshot</h2>
@@ -615,6 +615,20 @@ tbody tr:hover{filter:brightness(.985)}
 
   <div class="footer">Coastal Bend Power Services • SafetyHQ</div>
 </main>
+  
+<script>
+(function(){
+  const quarterly = document.querySelector(".quarterly-collapse");
+  if(!quarterly) return;
+
+  if(window.matchMedia("(max-width:620px)").matches){
+    quarterly.removeAttribute("open");
+  } else {
+    quarterly.setAttribute("open", "");
+  }
+})();
+</script>
+
 <script>
 (function(){
   function cleanText(value){
