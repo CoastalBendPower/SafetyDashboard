@@ -370,7 +370,7 @@ tbody tr:hover{filter:brightness(.985)}
     </a>
   </section>
 
-  <div class="updated-line">Updating live data...</div>
+  <div class="updated-line">Loading latest update...</div>
 
   <section class="data-grid">
     <section class="snapshot-grid">
@@ -802,9 +802,38 @@ function renderTrainingItems(items){
   const trainingSection = findSectionByTitle("Training Status");
   if(!trainingSection) return;
 
-  const overdue = items.filter(x => String(x.status || "").trim() === "Overdue");
-  const dueSoon = items.filter(x => String(x.status || "").trim() === "Due Within 7 Days");
-  const neutral = items.filter(x => !["Overdue", "Due Within 7 Days"].includes(String(x.status || "").trim()));
+  const sortedItems = [...items].sort((a, b) => {
+    const aStatus = String(a.status || "").trim();
+    const bStatus = String(b.status || "").trim();
+
+    const rank = status => {
+      if(status === "Overdue") return 1;
+      if(status === "Due Within 7 Days") return 2;
+      return 3;
+    };
+
+    const parseDueDate = value => {
+      if(!value) return new Date("2999-12-31");
+      const text = String(value).trim().replace(/-/g,"/");
+      const parts = text.split("/");
+      if(parts.length === 3){
+        const mm = Number(parts[0]);
+        const dd = Number(parts[1]);
+        const yyyy = Number(parts[2]);
+        if(Number.isFinite(mm) && Number.isFinite(dd) && Number.isFinite(yyyy)){
+          return new Date(yyyy, mm - 1, dd);
+        }
+      }
+      const parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? new Date("2999-12-31") : parsed;
+    };
+
+    return rank(aStatus) - rank(bStatus) || parseDueDate(a.dueDate) - parseDueDate(b.dueDate);
+  });
+
+  const overdue = sortedItems.filter(x => String(x.status || "").trim() === "Overdue");
+  const dueSoon = sortedItems.filter(x => String(x.status || "").trim() === "Due Within 7 Days");
+  const neutral = sortedItems.filter(x => !["Overdue", "Due Within 7 Days"].includes(String(x.status || "").trim()));
 
   const pills = trainingSection.querySelectorAll(".summary-pill, .count-pill");
   if(pills[0]) pills[0].textContent = `${Number(window.safetyHQSummary?.trainingOverdue ?? overdue.length)} Overdue`;
@@ -829,7 +858,7 @@ function renderTrainingItems(items){
           <td><span class="pill pill-orange">Due ${escapeHTML(cleanDate(row.dueDate))}</span></td>
         </tr>`).join("")}
       ${neutral.map(row => `
-        <tr class="row-neutral mobile-secondary-row">
+        <tr class="row-neutral">
           <td>${escapeHTML(row.employee)}</td>
           <td>${escapeHTML(row.training || "Training title missing")}</td>
           <td><span class="pill pill-neutral">Due ${escapeHTML(cleanDate(row.dueDate))}</span></td>
