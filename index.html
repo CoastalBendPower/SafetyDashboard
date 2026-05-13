@@ -298,7 +298,6 @@ tbody tr:hover{filter:brightness(.985)}
 @media(max-width:620px){
   .header-banner{height:auto;min-height:0;object-fit:contain}
   .wrap{padding:10px}
-
    .updated-line{
     display:flex;
     width:100%;
@@ -308,12 +307,29 @@ tbody tr:hover{filter:brightness(.985)}
     padding:10px 12px;
     text-align:center;
   }
-
-  .utility-row{display:flex;flex-direction:column;align-items:center;padding:8px;gap:6px;min-height:0}
-  .nav-but  .nav-button,.hsi-dropdown,.hsi-dropdown summary{width:100%;max-width:260px;height:70px}
+  .utility-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    justify-content:center;
+    padding:8px;
+    gap:8px;
+    min-height:0;
+  }
+  .nav-button,.hsi-dropdown,.hsi-dropdown summary{
+    width:100%;
+    max-width:100%;
+    height:58px;
+  }
   .procedure-link-main{display:none}
-  ton,.hsi-dropdown,.hsi-dropdown summary,.procedure-link-main{width:100%;max-width:260px;height:70px}
-  .hsi-menu{position:static;width:100%;grid-template-columns:1fr;margin-top:8px}
+  .hsi-menu{
+    position:absolute;
+    top:62px;
+    left:0;
+    width:220px;
+    grid-template-columns:1fr;
+    margin-top:0;
+  }
   .snapshot-grid{grid-template-columns:1fr;gap:10px}
   .quarter-grid{grid-template-columns:1fr}
   .quarter.upcoming{display:none}
