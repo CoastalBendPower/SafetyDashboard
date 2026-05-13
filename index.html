@@ -177,20 +177,19 @@ header{
 }
 .hsi-menu a:hover{background:#eef6ff;border-color:#bfd3ea;transform:translateY(-1px);box-shadow:0 8px 18px rgba(15,23,42,.10)}
 .updated-line{
-  display:inline-flex;
+  display:flex;
   align-items:center;
-  justify-content:center;
-  width:auto;
-  max-width:100%;
+  justify-content:flex-start;
+  width:100%;
   color:var(--brand-dark);
-  background:rgba(31,78,121,.09);
-  border:1px solid rgba(31,78,121,.18);
-  border-radius:999px;
-  font-size:15px;
+  background:linear-gradient(180deg,#f8fbff,#eef6ff);
+  border-left:5px solid var(--brand);
+  border-radius:10px;
+  font-size:16px;
   font-weight:900;
-  margin:4px 2px 12px;
-  padding:8px 14px;
-  box-shadow:0 6px 16px rgba(15,23,42,.06);
+  margin:8px 0 16px;
+  padding:11px 14px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
 }
 
 /* Data sections */
@@ -277,12 +276,13 @@ tbody tr:hover{filter:brightness(.985)}
   .header-banner{height:auto;min-height:0;object-fit:contain}
   .wrap{padding:10px}
 
-  .updated-line{
+   .updated-line{
     display:flex;
     width:100%;
+    justify-content:center;
     font-size:14px;
-    margin:2px 0 12px;
-    padding:9px 12px;
+    margin:4px 0 12px;
+    padding:10px 12px;
     text-align:center;
   }
 
@@ -370,8 +370,8 @@ tbody tr:hover{filter:brightness(.985)}
     </a>
   </section>
 
-  <div class="updated-line">Loading latest update...</div>
-
+<div class="updated-line">Loading last update...</div>
+  
   <section class="data-grid">
     <section class="snapshot-grid">
     <details class="panel collapse-panel quarterly-collapse" open>
@@ -885,9 +885,9 @@ function updateSafetyHQDashboard(data){
   window.safetyHQSummary = summary;
 
   const updatedLine = document.querySelector(".updated-line");
-  if(updatedLine && summary.lastUpdate){
-    updatedLine.textContent = `Updated: ${summary.lastUpdate}`;
-  }
+if(updatedLine && summary.lastUpdate){
+  updatedLine.textContent = `Last Update: ${summary.lastUpdate}`;
+}
 
   setTextByLabel("Man Hours", formatNumber(summary.manHours));
   setTextByLabel("Total Man Hours", formatNumber(summary.manHours));
