@@ -287,7 +287,9 @@ tbody tr:hover{filter:brightness(.985)}
   }
 
   .utility-row{display:flex;flex-direction:column;align-items:center;padding:8px;gap:6px;min-height:0}
-  .nav-button,.hsi-dropdown,.hsi-dropdown summary,.procedure-link-main{width:100%;max-width:260px;height:70px}
+  .nav-but  .nav-button,.hsi-dropdown,.hsi-dropdown summary{width:100%;max-width:260px;height:70px}
+  .procedure-link-main{display:none}
+  ton,.hsi-dropdown,.hsi-dropdown summary,.procedure-link-main{width:100%;max-width:260px;height:70px}
   .hsi-menu{position:static;width:100%;grid-template-columns:1fr;margin-top:8px}
   .snapshot-grid{grid-template-columns:1fr;gap:10px}
   .quarter-grid{grid-template-columns:1fr}
@@ -633,9 +635,17 @@ tbody tr:hover{filter:brightness(.985)}
             </tr>
           </tbody>
         </table>
-      </div>
+            </div>
       </div>
     </details>
+
+    <section class="panel procedure-mobile-panel">
+      <h2>Procedure Center</h2>
+      <p>Review procedure status, audit gaps, and controlled documents.</p>
+      <a class="procedure-mobile-link" href="https://coastalbendpower.github.io/SafetyHQ/procedures.html" target="_blank" rel="noopener noreferrer">
+        Open Procedure Center
+      </a>
+    </section>
   </section>
 
   <div class="footer">Coastal Bend Power Services • SafetyHQ</div>
