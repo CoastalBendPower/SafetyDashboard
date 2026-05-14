@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CBPS Safety Dashboard</title>
+<title>CBPS Safety HQ</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#06264a">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,18 +23,6 @@
   --bad:#b42318;
   --card:#ffffff;
   --soft:#f8fbff;
-  --green-bg:#dcfce7;
-  --green-line:#86efac;
-  --green-text:#166534;
-  --orange-bg:#ffedd5;
-  --orange-line:#fdba74;
-  --orange-text:#9a3412;
-  --red-bg:#fee2e2;
-  --red-line:#fca5a5;
-  --red-text:#991b1b;
-  --neutral-bg:#f8fafc;
-  --neutral-line:#dbe3ee;
-  --neutral-text:#334155;
 }
 *{box-sizing:border-box}
 body{
@@ -43,7 +31,6 @@ body{
   background:linear-gradient(180deg,#f7fbff 0%,#eef3f8 42%,#e8f0f8 100%);
   color:var(--text);
 }
-a{color:inherit;text-decoration:none}
 header{
   background:#06264a;
   overflow:hidden;
@@ -51,7 +38,6 @@ header{
   display:flex;
   justify-content:center;
   align-items:center;
-  justify-items:center;
   padding:0;
   line-height:0;
 }
@@ -65,10 +51,8 @@ header{
 }
 .wrap{max-width:1280px;margin:0 auto;padding:20px}
 .section{margin-top:18px}
-.section-title{font-size:22px;font-weight:900;margin:0 0 10px;letter-spacing:-.02em;color:var(--brand-dark)}
-.section-note{color:var(--muted);font-size:13px;margin:-4px 0 12px;line-height:1.45}
-.due-highlight{display:inline-flex;align-items:center;border-radius:999px;padding:2px 8px;margin:0 2px;background:#ffedd5;color:#9a3412;border:1px solid #fdba74;font-weight:900;white-space:nowrap}
-.due-highlight.overdue{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
+.section-title{font-size:22px;font-weight:900;margin:0 0 10px;letter-spacing:-.02em;color:#111827}
+.section-note{color:var(--muted);font-size:13px;margin:-4px 0 12px;line-height:1.35}
 .panel,.card{
   background:linear-gradient(180deg,#fff,#f9fbfe);
   border:1px solid rgba(203,213,225,.78);
@@ -80,23 +64,23 @@ header{
 
 /* Top utility image buttons */
 .utility-row{
-  min-height:88px;
+  min-height:54px;
   margin:6px auto 8px;
   position:relative;
   z-index:5;
-  padding:4px 12px;
+  padding:1px 8px;
   display:grid;
   grid-template-columns:auto auto 1fr;
   align-items:center;
-  gap:14px;
+  gap:6px;
   background:rgba(255,255,255,.94);
   backdrop-filter:blur(6px);
   border:1px solid rgba(203,213,225,.72);
   box-shadow:0 18px 42px rgba(15,23,42,.14);
 }
 .nav-button{
-  width:300px;
-  height:80px;
+  width:235px;
+  height:52px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -117,279 +101,113 @@ header{
   border-radius:12px;
 }
 .procedure-link-main{display:none}
-  .sharesync-link{justify-self:start}
-.hsi-dropdown{justify-self:start}
-.hsi-dropdown{
-  position:relative;
-  border:none;
-  background:transparent;
-  width:300px;
-  height:80px;
-  overflow:visible;
-}
-.hsi-dropdown summary{
-  list-style:none;
-  cursor:pointer;
-  width:300px;
-  height:80px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:0;
-  overflow:visible;
-  border-radius:14px;
-}
+.sharesync-link{justify-self:start}
+.hsi-dropdown{justify-self:start;position:relative;border:none;background:transparent;width:235px;height:52px;overflow:visible}
+.hsi-dropdown summary{list-style:none;cursor:pointer;width:235px;height:52px;display:flex;align-items:center;justify-content:center;padding:0;overflow:visible;border-radius:14px}
 .hsi-dropdown summary::-webkit-details-marker{display:none}
 .hsi-title{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
 .hsi-title img{width:100%;height:100%;object-fit:contain;display:block;border-radius:12px}
-.hsi-dropdown summary::after{display:none}
-.hsi-menu{
-  position:absolute;
-  top:84px;
-  left:0;
-  z-index:50;
-  width:310px;
-  display:grid;
-  grid-template-columns:repeat(2,minmax(130px,1fr));
-  gap:8px;
-  padding:10px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  box-shadow:0 18px 42px rgba(15,23,42,.20);
-}
-.hsi-menu a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:40px;
-  border-radius:12px;
-  background:linear-gradient(180deg,#ffffff,#f8fbff);
-  border:1px solid var(--line);
-  text-decoration:none;
-  color:var(--brand-dark);
-  font-size:12px;
-  font-weight:900;
-  text-align:center;
-  padding:8px 10px;
-  box-shadow:0 4px 12px rgba(15,23,42,.06);
-  transition:all .18s ease;
-}
+.hsi-menu{position:absolute;top:52px;left:0;z-index:50;width:230px;display:grid;grid-template-columns:repeat(2,minmax(130px,1fr));gap:8px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 42px rgba(15,23,42,.20)}
+.hsi-menu a{display:flex;align-items:center;justify-content:center;min-height:40px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#f8fbff);border:1px solid var(--line);text-decoration:none;color:var(--brand-dark);font-size:12px;font-weight:900;text-align:center;padding:8px 10px;box-shadow:0 4px 12px rgba(15,23,42,.06);transition:all .18s ease}
 .hsi-menu a:hover{background:#eef6ff;border-color:#bfd3ea;transform:translateY(-1px);box-shadow:0 8px 18px rgba(15,23,42,.10)}
-.updated-line{
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  width:100%;
-  color:var(--brand-dark);
-  background:linear-gradient(180deg,#f8fbff,#eef6ff);
-  border-left:5px solid var(--brand);
-  border-radius:10px;
-  font-size:16px;
-  font-weight:900;
-  margin:8px 0 16px;
-  padding:11px 14px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-}
+.updated-line{display:flex;align-items:center;justify-content:flex-start;width:100%;color:var(--brand-dark);background:linear-gradient(180deg,#f8fbff,#eef6ff);border-left:5px solid var(--brand);border-radius:10px;font-size:16px;font-weight:900;margin:8px 0 16px;padding:11px 14px;box-shadow:0 8px 20px rgba(15,23,42,.08)}
 
-/* Data sections */
-.data-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
-.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 18px}
-.metric-grid.two{grid-template-columns:repeat(2,1fr)}
-.metric{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px;
-  background:#f8fafc;
-  min-height:84px;
-}
-.metric-label{font-size:12px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
-.metric-value{font-size:32px;font-weight:900;color:var(--brand-dark);line-height:1.05}
-.metric.green{background:var(--green-bg);border-color:var(--green-line)}
-.metric.orange{background:var(--orange-bg);border-color:var(--orange-line)}
-.metric.red{background:var(--red-bg);border-color:var(--red-line)}
-.snapshot-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:14px;align-items:stretch}
-.quarter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
-.quarter{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff;min-height:105px;border-top:5px solid #94a3b8;position:relative;overflow:hidden}
-.quarter::after{content:"";position:absolute;right:-18px;top:-18px;width:58px;height:58px;border-radius:50%;background:rgba(31,78,121,.06)}
-.quarter.complete{background:#f2fbf4;border-top-color:#5fbf72}
-.quarter.active{background:#f2f8ff;border-top-color:#5b9bd5}
-.quarter.upcoming{background:#f7f8fa;border-top-color:#cbd5e1;color:#94a3b8}
-.quarter.upcoming p,.quarter.upcoming .quarter-title{color:#94a3b8}
-.quarter-title{font-size:13px;font-weight:900;margin-bottom:10px;color:var(--brand-dark)}
-.quarter p{font-size:13px;line-height:1.45;margin:5px 0;color:#475569}
-.quarter strong{color:#111827}
-.quarter.upcoming strong{color:#94a3b8}
-.totals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-.total-card{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff;min-height:105px;border-top:5px solid var(--ok);position:relative;overflow:hidden}
-.total-card::after{content:"";position:absolute;right:-16px;bottom:-16px;width:56px;height:56px;border-radius:50%;background:rgba(31,122,31,.06)}
-.total-card .metric-label{margin-bottom:8px}
-.total-card .metric-value{font-size:32px}
-.total-card.recordables{border-top-color:#5b9bd5}
-.total-card.recordables::after{background:rgba(31,78,121,.08)}
-.status-layout{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(360px,1.18fr);gap:16px;align-items:start}
-.status-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
-.status-card-header{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;background:#eef4fb;border-bottom:1px solid var(--line)}
-.status-card-header h3{color:var(--brand-dark);font-size:17px;margin:0;font-weight:900}
-.status-count{font-size:13px;color:var(--muted);font-weight:900;white-space:nowrap}
-.table-wrap{overflow-x:auto;background:#fff;border-radius:16px}
-table{width:100%;border-collapse:collapse;min-width:520px;font-size:14px;background:#fff;border-radius:12px;overflow:hidden}
-.status-layout table{min-width:420px}
-th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:14px}
-th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;background:var(--soft);white-space:nowrap}
-th.sortable{cursor:pointer;user-select:none;position:relative;padding-right:22px}
-th.sortable::after{content:"↕";position:absolute;right:8px;color:#94a3b8;font-size:11px}
-th.sortable.sort-asc::after{content:"↑";color:var(--brand-dark)}
-th.sortable.sort-desc::after{content:"↓";color:var(--brand-dark)}
-tr:last-child td{border-bottom:0}
-tbody tr:hover{filter:brightness(.985)}
-.row-red{background:var(--red-bg);color:var(--red-text)}
-.row-orange{background:var(--orange-bg);color:var(--orange-text)}
-.row-green{background:var(--green-bg);color:var(--green-text)}
-.row-neutral{background:var(--neutral-bg);color:var(--neutral-text)}
-.pill{display:inline-flex;align-items:center;justify-content:center;padding:5px 10px;border-radius:999px;font-weight:900;font-size:12px;white-space:nowrap;margin-right:4px}
-.pill-red{background:#fecaca;color:#7f1d1d;border:1px solid #f87171}
-.pill-orange{background:#fed7aa;color:#7c2d12;border:1px solid #fb923c}
-.pill-green{background:#bbf7d0;color:#14532d;border:1px solid #4ade80}
-.pill-neutral{background:#e2e8f0;color:#334155;border:1px solid #cbd5e1}
-.info-note{margin-top:12px;padding:12px 14px;border-radius:12px;background:#f8fafc;border:1px solid var(--line);color:var(--muted);line-height:1.45;font-size:13px}
-.collapse-panel{padding:0;overflow:hidden}
-.collapse-panel summary{list-style:none;cursor:pointer;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.collapse-panel summary::-webkit-details-marker{display:none}
-.collapse-title-wrap{display:flex;flex-direction:column;gap:4px}
-.collapse-title-wrap .section-title{margin:0}
-.collapse-title-wrap .section-note{margin:0}
-.collapse-badges{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.summary-pill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:900;white-space:nowrap;border:1px solid var(--line)}
-.summary-pill.red{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
-.summary-pill.orange{background:#ffedd5;color:#9a3412;border-color:#fdba74}
-.summary-pill.green{background:#dcfce7;color:#166534;border-color:#86efac}
-.summary-pill.neutral{background:#e2e8f0;color:#334155;border-color:#cbd5e1}
-.collapse-body{padding:0 16px 16px}
-.procedure-mobile-panel{
-  display:flex;
-  justify-content:flex-start;
-  align-items:center;
-  padding:0;
-  margin:12px 0 0;
-}
+/* KPI cards */
+.label{font-size:12px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.07em}
+.value{font-size:34px;font-weight:900;margin-top:8px;line-height:1.05;color:#111827}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kpi-row.two{grid-template-columns:repeat(2,1fr)}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;min-height:105px}
+.kpi.good{border-top:5px solid var(--ok)}
+.kpi.brand{border-top:5px solid var(--brand)}
+.kpi.neutral{border-top:5px solid #94a3b8}
+.kpi.warn{border-top:5px solid var(--warn)}
+.kpi.bad{border-top:5px solid var(--bad)}
+.q-label{font-size:13px;font-weight:900;color:#334155}
+.q-meta{font-size:13px;line-height:1.5;margin-top:8px;color:#475569}
+.q-meta strong{color:#111827}
 
-.procedure-bottom-button{
-  width:300px;
-  max-width:100%;
-  height:80px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+/* Collapsible OSHA Snapshot */
+.osha-panel{padding:0;overflow:hidden}
+.osha-summary{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:16px;border-bottom:1px solid rgba(219,227,239,.65)}
+.osha-summary::-webkit-details-marker{display:none}
+.osha-split{display:grid;grid-template-columns:minmax(260px,.72fr) 1px minmax(560px,1.55fr);gap:18px;align-items:stretch;padding:16px}
+.osha-divider{width:1px;min-height:100%;background:linear-gradient(180deg,transparent,#cbd5e1 18%,#cbd5e1 82%,transparent)}
+.osha-totals-side,.osha-quarterlies-side{min-width:0}
+.subsection-title{font-size:16px;font-weight:900;margin:0 0 10px;color:#334155}
+.osha-quarter-row{grid-template-columns:repeat(4,minmax(120px,1fr))}
 
-.procedure-bottom-button img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-}
-  .footer{margin-top:20px;color:var(--muted);text-align:center;font-size:13px}
+/* Collapsible Monthly / Training panels */
+.status-collapse{padding:0;overflow:hidden}
+.status-summary{list-style:none;cursor:pointer;margin-bottom:0;padding:16px;border-bottom:1px solid rgba(219,227,239,.65)}
+.status-summary::-webkit-details-marker{display:none}
+.status-collapse > .status-layout{padding:16px}
+.status-collapse > .table-wrap.status-card{margin:16px}
+
+/* Status tables */
+.overdue-grid{display:grid;grid-template-columns:1fr;gap:14px;align-items:start}
+.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.count-wrap{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.count-pill{border-radius:999px;padding:6px 10px;font-size:13px;font-weight:900;white-space:nowrap}
+.count-pill.bad{background:#fde8e8;color:var(--bad)}
+.count-pill.warn{background:#fff4df;color:var(--warn)}
+.count-pill.good{background:#e8f7e8;color:var(--ok)}
+.count-pill.neutral{background:#eef6ff;color:var(--brand-dark)}
+.status-layout{display:grid;grid-template-columns:minmax(300px,.9fr) minmax(360px,1.1fr);gap:14px;align-items:start}
+.status-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.status-card-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:var(--soft);border-bottom:1px solid var(--line)}
+.status-card-header h3{margin:0;font-size:16px;font-weight:900;color:#334155}
+.status-count{border-radius:999px;background:#e8eefc;color:var(--brand-dark);font-size:12px;font-weight:900;padding:4px 8px;white-space:nowrap}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;background:var(--soft)}
+tbody tr:hover{background:rgba(31,78,121,.05)}
+tr.row-red td{background:#fff5f5}
+tr.row-orange td{background:#fffaf0}
+tr.row-green td{background:#f3fbf3}
+tr.row-neutral td{background:#fff}
+.pill{display:inline-block;border-radius:999px;padding:4px 8px;font-weight:900;font-size:12px;white-space:nowrap}
+.pill-red{background:#fde8e8;color:var(--bad)}
+.pill-red.severe{background:#7f1d1d;color:#fff;border:1px solid #991b1b}
+.pill-orange{background:#fff4df;color:var(--warn)}
+.pill-green{background:#e8f7e8;color:var(--ok)}
+.pill-neutral{background:#eef2f7;color:#475569}
+.eq{font-weight:900;color:var(--brand-dark)}
+.empty-state{padding:14px;color:var(--muted);font-weight:800;background:#fff}
+.procedure-mobile-panel{display:flex;justify-content:flex-start;align-items:center;padding:0;margin:12px 0 0}
+.procedure-bottom-button{width:260px;max-width:100%;height:70px;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.procedure-bottom-button img{width:100%;height:100%;object-fit:contain;display:block}
+.footer{text-align:center;color:var(--muted);font-size:12px;font-weight:700;margin:20px 0 8px}
 
 @media(max-width:980px){
-  .metric-grid,.quarter-grid{grid-template-columns:repeat(2,1fr)}
-  .status-layout,.osha-layout{grid-template-columns:1fr}
+  .osha-split{grid-template-columns:1fr;gap:12px}
+  .osha-divider{width:100%;height:1px;min-height:1px;background:linear-gradient(90deg,transparent,#cbd5e1 18%,#cbd5e1 82%,transparent)}
+  .osha-quarter-row{grid-template-columns:repeat(2,1fr)}
+  .status-layout{grid-template-columns:1fr}
+  .status-summary{padding:14px}
+  .status-collapse > .status-layout{padding:12px}
+  .status-collapse > .table-wrap.status-card{margin:12px}
+  .kpi-row{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:620px){
   .header-banner{height:auto;min-height:0;object-fit:contain}
-  .wrap{padding:10px}
-   .updated-line{
-    display:flex;
-    width:100%;
-    justify-content:center;
-    font-size:14px;
-    margin:4px 0 12px;
-    padding:10px 12px;
-    text-align:center;
-  }
-  .utility-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    align-items:center;
-    justify-content:center;
-    padding:8px;
-    gap:8px;
-    min-height:0;
-  }
-  .nav-button,.hsi-dropdown,.hsi-dropdown summary{
-    width:100%;
-    max-width:100%;
-    height:58px;
-  }
-  .procedure-link-main{display:none}
-  .hsi-menu{
-    position:absolute;
-    top:62px;
-    left:0;
-    width:220px;
-    grid-template-columns:1fr;
-    margin-top:0;
-  }
-  .snapshot-grid{grid-template-columns:1fr;gap:10px}
-  .quarter-grid{grid-template-columns:1fr}
-  .quarter.upcoming{display:none}
-  .quarterly-collapse{padding:0}
-  .quarterly-collapse summary{display:block;padding:12px}
-  .quarterly-collapse .quarter-grid{grid-template-columns:1fr}
-  .quarterly-badges{justify-content:flex-start;margin-top:8px}
-  .totals-grid{grid-template-columns:repeat(3,1fr);gap:7px}
-  .total-card{min-height:86px;padding:10px}
-  .total-card .metric-label{font-size:9px;letter-spacing:.04em}
-  .total-card .metric-value{font-size:22px}
-  .metric-grid,.metric-grid.two{grid-template-columns:1fr}
-  .metric-value{font-size:28px}
-  .panel{padding:12px;border-radius:16px}
-  .collapse-panel{padding:0}
-  .collapse-panel summary{display:block;padding:12px}
-  .collapse-badges{justify-content:flex-start;margin-top:8px;gap:6px}
-  .summary-pill{font-size:11px;padding:6px 9px}
-  .collapse-body{padding:0 12px 12px}
-  .status-layout{grid-template-columns:1fr;gap:10px}
-  .mobile-secondary-section{display:none}
-  .mobile-secondary-row{display:none}
-  .table-wrap{overflow-x:visible;width:100%;max-width:100%}
-  .status-layout table{min-width:0!important;width:100%;max-width:100%}
-  table,thead,tbody,tr,td{display:block;width:100%;min-width:0}
-  table{min-width:0;background:transparent}
-  thead{display:none}
-  tbody tr{border:1px solid var(--line);border-radius:12px;margin:8px 0;padding:8px;background:#fff;box-shadow:0 5px 14px rgba(15,23,42,.05);width:100%;max-width:100%;overflow:hidden}
-  tbody tr.row-red{background:var(--red-bg);border-color:var(--red-line)}
-  tbody tr.row-orange{background:var(--orange-bg);border-color:var(--orange-line)}
-  tbody tr.row-green{background:var(--green-bg);border-color:var(--green-line)}
-  tbody tr.row-neutral{background:var(--neutral-bg);border-color:var(--neutral-line)}
-  td{border-bottom:0;padding:5px 4px;font-size:12px;display:grid;grid-template-columns:92px minmax(0,1fr);gap:8px;align-items:start;max-width:100%;overflow:hidden}
-  td::before{font-weight:900;color:var(--muted);text-transform:uppercase;font-size:9px;letter-spacing:.05em}
-  .monthly-table td:nth-child(1)::before{content:"Employee"}
-  .monthly-table td:nth-child(2)::before{content:"EQ #"}
-  .monthly-table td:nth-child(3)::before{content:"Status"}
-  .training-table td:nth-child(1)::before{content:"Employee"}
-  .training-table td:nth-child(2)::before{content:"Training"}
-  .training-table td:nth-child(3)::before{content:"Status"}
-  .pill{font-size:11px;padding:4px 8px;max-width:100%;white-space:normal;text-align:center}
-.monthly-table .pill,.training-table .pill{width:100%}
-  .status-card-header{padding:10px 12px}
-  .status-card-header h3{font-size:15px}
-  .status-count{font-size:11px}
-    .procedure-mobile-panel{
-    margin-top:12px;
-    padding:12px;
-  }
-
-  .procedure-bottom-button{
-    width:100%;
-    max-width:260px;
-    height:70px;
-  }
-  .section-title{font-size:18px}
-  .section-note{font-size:12px}
-}
-@media(max-width:620px){
-  .snapshot-grid:has(.quarterly-collapse:not([open])) > .panel:not(.quarterly-collapse){display:none;}
+  .wrap{padding:14px}
+  .utility-row{display:grid;grid-template-columns:1fr 1fr;align-items:center;justify-content:center;padding:8px;gap:8px;min-height:0}
+  .nav-button,.hsi-dropdown,.hsi-dropdown summary{width:100%;max-width:100%;height:58px}
+  .hsi-menu{position:absolute;top:62px;left:0;width:220px;grid-template-columns:1fr;margin-top:0}
+  .updated-line{display:flex;width:100%;justify-content:center;font-size:14px;margin:4px 0 12px;padding:10px 12px;text-align:center}
+  .osha-summary{align-items:center;padding:14px}
+  .osha-split{grid-template-columns:1fr;gap:12px;padding:0 12px 12px}
+  .osha-quarter-row,.kpi-row,.kpi-row.two{grid-template-columns:1fr}
+  .value{font-size:28px}
+  .panel{padding:12px}
+  .osha-panel{padding:0}
+  table{font-size:13px}
+  th,td{padding:9px 6px}
+  .section-title{font-size:20px}
+  .procedure-mobile-panel{margin-top:12px;padding:12px}
+  .procedure-bottom-button{width:100%;max-width:240px;height:64px}
 }
 </style>
 </head>
@@ -412,7 +230,7 @@ tbody tr:hover{filter:brightness(.985)}
       </div>
     </details>
 
-    <a class="nav-button sharesync-link" href="https://account.sharesync.serverdata.net/login/v1.2/?client_id=sharesync_web_app_sts&client_type=Sync-WebApp&client_version=3.48.1&application_client_id=5d5c5f78-10b2-0f0b-a925-606d43526abe&error_message=Internal+error&redirect_uri=https%3A%2F%2Fsharesync.serverdata.net%2Fus4%2F&locale=en-us" target="_blank" rel="noopener noreferrer" aria-label="ShareSync Login">
+    <a class="nav-button sharesync-link" href="https://account.sharesync.serverdata.net/login/v1.2/?client_id=sharesync_web_app_sts&client_type=Sync-WebApp&client_version=3.48.1&application_client_id=5d5c5f78-10b2-0f0b-a925-606d43526abe&redirect_uri=https%3A%2F%2Fsharesync.serverdata.net%2Fus4%2F&locale=en-us" target="_blank" rel="noopener noreferrer" aria-label="ShareSync Login">
       <img src="assets/button_ShareSync Login.png" alt="ShareSync Login">
     </a>
 
@@ -421,288 +239,176 @@ tbody tr:hover{filter:brightness(.985)}
     </a>
   </section>
 
-<div class="updated-line">Loading last update...</div>
-  
-  <section class="data-grid">
-    <section class="snapshot-grid">
-    <details class="panel collapse-panel quarterly-collapse" open>
-      <summary>
-        <div class="collapse-title-wrap">
-          <h2 class="section-title">📊 Quarterly OSHA Snapshot</h2>
-          <p class="section-note">Recordables and man hours by quarter.</p>
-        </div>
-        <div class="collapse-badges quarterly-badges">
-          <span class="summary-pill green">Q1 Complete</span>
-          <span class="summary-pill neutral">Q2 Active</span>
+  <div class="updated-line" id="last-update">Last Update: 05/14/2026 5:02 PM</div>
+
+  <section class="section">
+    <details class="panel quarterly-collapse osha-panel" open>
+      <summary class="osha-summary">
+        <div>
+          <h2 class="section-title">2026 OSHA Snapshot</h2>
+          <p class="section-note">Company OSHA statistics, totals, and quarterly activity.</p>
         </div>
       </summary>
-      <div class="collapse-body">
-      <div class="quarter-grid">
-        <div class="quarter complete">
-          <div class="quarter-title">✅ Q1 Complete</div>
-          <p><strong>Recordables:</strong> 0</p>
-          <p><strong>Man Hours:</strong> 15,878</p>
+
+      <div class="osha-split">
+        <div class="osha-totals-side">
+          <h3 class="subsection-title">2026 Totals</h3>
+          <div class="kpi-row two">
+            <div class="kpi good">
+              <div class="label">Total Man Hours</div>
+              <div class="value" id="ytd-man-hours">15,878</div>
+            </div>
+            <div class="kpi good">
+              <div class="label">EMR</div>
+              <div class="value" id="emr" style="color:var(--ok)">0.79</div>
+            </div>
+          </div>
         </div>
-        <div class="quarter active">
-          <div class="quarter-title">🔵 Q2 Active</div>
-          <p><strong>Recordables:</strong> 0</p>
-          <p><strong>Man Hours:</strong> 1,073</p>
+
+        <div class="osha-divider" aria-hidden="true"></div>
+
+        <div class="osha-quarterlies-side">
+          <h3 class="subsection-title">Quarterlies</h3>
+          <div class="kpi-row osha-quarter-row" id="quarterly-cards">
+            <div class="kpi good">
+              <div class="q-label">✅ Q1 Complete</div>
+              <div class="q-meta"><strong>Recordables:</strong> <span data-quarter="Q1" data-field="recordables">0</span><br><strong>Man Hours:</strong> <span data-quarter="Q1" data-field="manHours">15,878</span></div>
+            </div>
+            <div class="kpi brand">
+              <div class="q-label">🔵 Q2 Active</div>
+              <div class="q-meta"><strong>Recordables:</strong> <span data-quarter="Q2" data-field="recordables">0</span><br><strong>Man Hours:</strong> <span data-quarter="Q2" data-field="manHours">0</span></div>
+            </div>
+            <div class="kpi neutral">
+              <div class="q-label">⏳ Q3 Pending</div>
+              <div class="q-meta"><strong>Recordables:</strong> <span data-quarter="Q3" data-field="recordables">0</span><br><strong>Man Hours:</strong> <span data-quarter="Q3" data-field="manHours">0</span></div>
+            </div>
+            <div class="kpi neutral">
+              <div class="q-label">⏳ Q4 Pending</div>
+              <div class="q-meta"><strong>Recordables:</strong> <span data-quarter="Q4" data-field="recordables">0</span><br><strong>Man Hours:</strong> <span data-quarter="Q4" data-field="manHours">0</span></div>
+            </div>
+          </div>
         </div>
-        <div class="quarter upcoming">
-          <div class="quarter-title">⏳ Q3 Upcoming</div>
-          <p><strong>Recordables:</strong> 0</p>
-          <p><strong>Man Hours:</strong> 0</p>
-        </div>
-        <div class="quarter upcoming">
-          <div class="quarter-title">⏳ Q4 Upcoming</div>
-          <p><strong>Recordables:</strong> 0</p>
-          <p><strong>Man Hours:</strong> 0</p>
-        </div>
-      </div>
       </div>
     </details>
-
-    <div class="panel">
-      <h2 class="section-title">🛡️ 2026 Totals</h2>
-      <p class="section-note">Company performance snapshot.</p>
-      <div class="totals-grid">
-        <div class="total-card">
-          <div class="metric-label">Man Hours</div>
-          <div class="metric-value">16,951</div>
-        </div>
-        <div class="total-card">
-          <div class="metric-label">EMR</div>
-          <div class="metric-value" style="color:var(--ok)">0.79</div>
-        </div>
-        <div class="total-card recordables">
-          <div class="metric-label">YTD Recordables</div>
-          <div class="metric-value">0</div>
-        </div>
-      </div>
-    </div>
   </section>
 
-    <details class="panel collapse-panel">
-      <summary>
-        <div class="collapse-title-wrap">
+  <section class="section overdue-grid">
+    <details class="panel status-collapse" open>
+      <summary class="panel-head status-summary">
+        <div>
           <h2 class="section-title">Monthly Safety Equipment Checklist Status</h2>
-          <p class="section-note">May Monthlys are due by <span class="due-highlight overdue">05/08/2026</span>. Required for all employees assigned a company vehicle.</p>
+          <p class="section-note" id="monthly-note">May 2026 checklists due 05/08/2026. Required for all employees assigned a company vehicle.</p>
         </div>
-        <div class="collapse-badges">
-          <span class="summary-pill red">5 Overdue / Missing</span>
-          <span class="summary-pill green">15 Completed</span>
+        <div class="count-wrap">
+          <span class="count-pill warn" id="monthly-open-count">4 Overdue / Missing</span>
+          <span class="count-pill good" id="monthly-complete-count">16 Completed</span>
         </div>
       </summary>
-      <div class="collapse-body">
-<div class="status-layout">
+
+      <div class="status-layout">
         <section class="status-card">
           <div class="status-card-header">
             <h3>Overdue / Missing</h3>
-            <span class="status-count">5 items</span>
+            <span class="status-count" id="monthly-open-small">4 items</span>
           </div>
           <div class="table-wrap">
-            <table class="sortable-table monthly-table">
+            <table>
               <thead><tr><th>Employee</th><th>EQ #</th><th>Status</th></tr></thead>
-              <tbody>
-                <tr class="row-red"><td>Dalan Willberg</td><td>V005</td><td><span class="pill pill-red">2d Overdue</span></td></tr>
-                <tr class="row-red"><td>Cody Geffert</td><td>V006</td><td><span class="pill pill-red">2d Overdue</span></td></tr>
-                <tr class="row-red"><td>Hayden Henry</td><td>V013</td><td><span class="pill pill-red">2d Overdue</span> Missed April 2026</td></tr>
-                <tr class="row-red"><td>Reece Kollaja</td><td>V019</td><td><span class="pill pill-red">2d Overdue</span></td></tr>
-                <tr class="row-red"><td>Kurt Foerster</td><td>V027</td><td><span class="pill pill-red">2d Overdue</span></td></tr>
+              <tbody id="monthly-open-body">
+                <tr class="row-red"><td>Johnathon Torres</td><td class="eq">V008</td><td><span class="pill pill-red">6d Overdue</span></td></tr>
+                <tr class="row-red"><td>Hayden Henry</td><td class="eq">V013</td><td><span class="pill pill-red">6d Overdue</span> Missed April 2026</td></tr>
+                <tr class="row-red"><td>Kurt Foerster</td><td class="eq">V027</td><td><span class="pill pill-red">6d Overdue</span></td></tr>
+                <tr class="row-red"><td>Zach Hasdorff</td><td class="eq">V029</td><td><span class="pill pill-red">6d Overdue</span></td></tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        <section class="status-card mobile-secondary-section">
+        <section class="status-card">
           <div class="status-card-header">
             <h3>Completed</h3>
-            <span class="status-count">15 items</span>
+            <span class="status-count" id="monthly-complete-small">16 items</span>
           </div>
           <div class="table-wrap">
-            <table class="sortable-table monthly-table">
-              <thead><tr><th>Employee</th><th>EQ #</th><th>Status</th></tr></thead>
-              <tbody>
-                <tr class="row-green"><td>Lee Hasdorff</td><td>V026</td><td><span class="pill pill-green">05/01/2026</span></td></tr>
-                <tr class="row-green"><td>Ricky Hilbrich</td><td>V016</td><td><span class="pill pill-green">05/01/2026</span></td></tr>
-                <tr class="row-green"><td>Jeff Barrera</td><td>V017</td><td><span class="pill pill-green">05/01/2026</span></td></tr>
-                <tr class="row-green"><td>Greg Woodring</td><td>V010</td><td><span class="pill pill-green">05/01/2026</span></td></tr>
-                <tr class="row-green"><td>Weston Haworth</td><td>V021</td><td><span class="pill pill-green">05/02/2026</span></td></tr>
-                <tr class="row-green"><td>Nathan Motal</td><td>V020</td><td><span class="pill pill-green">05/02/2026</span></td></tr>
-                <tr class="row-green"><td>Nate Evans</td><td>V022</td><td><span class="pill pill-green">05/02/2026</span></td></tr>
-                <tr class="row-green"><td>Jonathon Mokwa</td><td>V018</td><td><span class="pill pill-green">05/03/2026</span></td></tr>
-                <tr class="row-green"><td>Paul Gaida</td><td>V014</td><td><span class="pill pill-green">05/03/2026</span></td></tr>
-                <tr class="row-green"><td>Blake Woodring</td><td>V024</td><td><span class="pill pill-green">05/03/2026</span></td></tr>
-                <tr class="row-green"><td>Philip Kollaja</td><td>V028</td><td><span class="pill pill-green">05/03/2026</span></td></tr>
-                <tr class="row-green"><td>Lane Fikes</td><td>V008</td><td><span class="pill pill-green">05/04/2026</span></td></tr>
-                <tr class="row-green"><td>Marshall Mach</td><td>V025</td><td><span class="pill pill-green">05/04/2026</span></td></tr>
-                <tr class="row-green"><td>Zach Young</td><td>V023</td><td><span class="pill pill-green">05/05/2026</span></td></tr>
-                <tr class="row-green"><td>Mark Fehner</td><td>V009</td><td><span class="pill pill-green">05/06/2026</span></td></tr>
+            <table>
+              <thead><tr><th>Employee</th><th>EQ #</th><th>Completed</th></tr></thead>
+              <tbody id="monthly-complete-body">
+                <tr class="row-green"><td>Greg Woodring</td><td class="eq">V010</td><td><span class="pill pill-green">05/01/2026</span></td></tr>
+                <tr class="row-green"><td>Ricky Hilbrich</td><td class="eq">V016</td><td><span class="pill pill-green">05/01/2026</span></td></tr>
+                <tr class="row-green"><td>Jeff Barrera</td><td class="eq">V017</td><td><span class="pill pill-green">05/01/2026</span></td></tr>
+                <tr class="row-green"><td>Lee Hasdorff</td><td class="eq">V026</td><td><span class="pill pill-green">05/01/2026</span></td></tr>
+                <tr class="row-green"><td>Nathan Motal</td><td class="eq">V020</td><td><span class="pill pill-green">05/02/2026</span></td></tr>
+                <tr class="row-green"><td>Weston Haworth</td><td class="eq">V021</td><td><span class="pill pill-green">05/02/2026</span></td></tr>
+                <tr class="row-green"><td>Nate Evans</td><td class="eq">V022</td><td><span class="pill pill-green">05/02/2026</span></td></tr>
+                <tr class="row-green"><td>Paul Gaida</td><td class="eq">V014</td><td><span class="pill pill-green">05/03/2026</span></td></tr>
+                <tr class="row-green"><td>Jonathon Mokwa</td><td class="eq">V018</td><td><span class="pill pill-green">05/03/2026</span></td></tr>
+                <tr class="row-green"><td>Blake Woodring</td><td class="eq">V024</td><td><span class="pill pill-green">05/03/2026</span></td></tr>
+                <tr class="row-green"><td>Philip Kollaja</td><td class="eq">V028</td><td><span class="pill pill-green">05/03/2026</span></td></tr>
+                <tr class="row-green"><td>Lane Fikes</td><td class="eq">V019</td><td><span class="pill pill-green">05/04/2026</span></td></tr>
+                <tr class="row-green"><td>Marshall Mach</td><td class="eq">V025</td><td><span class="pill pill-green">05/04/2026</span></td></tr>
+                <tr class="row-green"><td>Zach Young</td><td class="eq">V023</td><td><span class="pill pill-green">05/05/2026</span></td></tr>
+                <tr class="row-green"><td>Mark Fehner</td><td class="eq">V009</td><td><span class="pill pill-green">05/06/2026</span></td></tr>
+                <tr class="row-green"><td>Cody Geffert</td><td class="eq">V006</td><td><span class="pill pill-green">05/11/2026</span></td></tr>
               </tbody>
             </table>
           </div>
         </section>
       </div>
-      </div>
     </details>
 
-    <details class="panel collapse-panel">
-      <summary>
-        <div class="collapse-title-wrap">
+    <details class="panel status-collapse" open>
+      <summary class="panel-head status-summary">
+        <div>
           <h2 class="section-title">Training Status</h2>
-          <p class="section-note">Review upcoming requirements with your crews to keep training current before due dates become overdue.</p>
+          <p class="section-note">Red means overdue. Orange means due within 7 days. Neutral means available in the training window but more than 7 days out. Completed training is not tracked here yet.</p>
         </div>
-        <div class="collapse-badges">
-          <span class="summary-pill red">1 Overdue</span>
-          <span class="summary-pill orange">3 Due Within 7 Days</span>
+        <div class="count-wrap">
+          <span class="count-pill bad" id="training-overdue-count">0 Overdue</span>
+          <span class="count-pill warn" id="training-soon-count">3 Due Within 7 Days</span>
         </div>
       </summary>
-      <div class="collapse-body">
-<div class="table-wrap status-card">
-        <table class="sortable-table training-table">
+      <div class="table-wrap status-card">
+        <table>
           <thead><tr><th>Employee</th><th>Training</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr class="row-red">
-              <td>Weston Haworth</td>
-              <td>Fall Protection - Construction</td>
-              <td><span class="pill pill-red">1d Overdue</span></td>
-            </tr>
-            <tr class="row-orange">
-              <td>Cody Geffert</td>
-              <td>Confined Space Entry - Permit Required</td>
-              <td><span class="pill pill-orange">Due 05/14/2026</span></td>
-            </tr>
-            <tr class="row-orange">
-              <td>Philip Kollaja</td>
-              <td>Confined Space Entry - Permit Required</td>
-              <td><span class="pill pill-orange">Due 05/14/2026</span></td>
-            </tr>
-            <tr class="row-orange">
-              <td>Lee Hasdorff</td>
-              <td>Confined Space Entry - Permit Required</td>
-              <td><span class="pill pill-orange">Due 05/16/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Paul Gaida</td>
-              <td>Confined Space Entry - Permit Required</td>
-              <td><span class="pill pill-neutral">Due 05/17/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Philip Kollaja</td>
-              <td>Excavation, Trenching, and Shoring Safety</td>
-              <td><span class="pill pill-neutral">Due 05/26/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Lee Hasdorff</td>
-              <td>Excavation, Trenching, and Shoring Safety</td>
-              <td><span class="pill pill-neutral">Due 05/23/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Weston Haworth</td>
-              <td>Confined Space Entry - Permit Required</td>
-              <td><span class="pill pill-neutral">Due 05/28/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Weston Haworth</td>
-              <td>Excavation, Trenching, and Shoring Safety</td>
-              <td><span class="pill pill-neutral">Due 05/28/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Cody Geffert</td>
-              <td>Benzene in the Workplace</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Cody Geffert</td>
-              <td>Heat Illness Prevention</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Philip Kollaja</td>
-              <td>Benzene in the Workplace</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Philip Kollaja</td>
-              <td>Heat Illness Prevention</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Lee Hasdorff</td>
-              <td>Benzene in the Workplace</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Lee Hasdorff</td>
-              <td>Heat Illness Prevention</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Zach Young</td>
-              <td>Benzene in the Workplace</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Zach Young</td>
-              <td>Heat Illness Prevention</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Weston Haworth</td>
-              <td>Benzene in the Workplace</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Weston Haworth</td>
-              <td>Heat Illness Prevention</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Marshall Mach</td>
-              <td>Benzene in the Workplace</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Marshall Mach</td>
-              <td>Heat Illness Prevention</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Zach Hasdorff</td>
-              <td>Hand and Power Tool Safety</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Zach Hasdorff</td>
-              <td>Hazard Communication</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
-            <tr class="row-neutral mobile-secondary-row">
-              <td>Zach Hasdorff</td>
-              <td>AEP Orientation</td>
-              <td><span class="pill pill-neutral">Due 05/31/2026</span></td>
-            </tr>
+          <tbody id="training-body">
+            <tr class="row-orange"><td>Cody Geffert</td><td>Confined Space Entry - Permit Required</td><td><span class="pill pill-orange">Due 05/14/2026</span></td></tr>
+            <tr class="row-orange"><td>Lee Hasdorff</td><td>Confined Space Entry - Permit Required</td><td><span class="pill pill-orange">Due 05/16/2026</span></td></tr>
+            <tr class="row-orange"><td>Paul Gaida</td><td>Confined Space Entry - Permit Required</td><td><span class="pill pill-orange">Due 05/17/2026</span></td></tr>
+            <tr class="row-neutral"><td>Weston Haworth</td><td>Confined Space Entry - Permit Required</td><td><span class="pill pill-neutral">Due 05/28/2026</span></td></tr>
+            <tr class="row-neutral"><td>Weston Haworth</td><td>Excavation, Trenching, and Shoring Safety</td><td><span class="pill pill-neutral">Due 05/28/2026</span></td></tr>
+            <tr class="row-neutral"><td>Lee Hasdorff</td><td>Excavation, Trenching, and Shoring Safety</td><td><span class="pill pill-neutral">Due 05/23/2026</span></td></tr>
+            <tr class="row-neutral"><td>Blake Woodring</td><td>Excavation, Trenching, and Shoring Safety</td><td><span class="pill pill-neutral">Due 06/01/2026</span></td></tr>
+            <tr class="row-neutral"><td>Zach Hasdorff</td><td>Hand and Power Tool Safety</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Zach Hasdorff</td><td>Hazard Communication</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Zach Hasdorff</td><td>AEP Orientation</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Lee Hasdorff</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Cody Geffert</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Zach Young</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Marshall Mach</td><td>Benzene in the Workplace</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Marshall Mach</td><td>Heat Illness Prevention</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Zach Young</td><td>Heat Illness Prevention</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Weston Haworth</td><td>Heat Illness Prevention</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Cody Geffert</td><td>Heat Illness Prevention</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
+            <tr class="row-neutral"><td>Lee Hasdorff</td><td>Heat Illness Prevention</td><td><span class="pill pill-neutral">Due 05/31/2026</span></td></tr>
           </tbody>
         </table>
-            </div>
       </div>
     </details>
 
-<section class="procedure-mobile-panel">
-  <a class="procedure-bottom-button" href="https://coastalbendpower.github.io/SafetyHQ/procedures.html" target="_blank" rel="noopener noreferrer" aria-label="Procedure Center">
-    <img src="assets/button_ProceduresDashboard.png" alt="Procedure Center">
-  </a>
-</section>
+    <section class="procedure-mobile-panel">
+      <a class="procedure-bottom-button" href="https://coastalbendpower.github.io/SafetyHQ/procedures.html" target="_blank" rel="noopener noreferrer" aria-label="Procedure Center">
+        <img src="assets/button_ProceduresDashboard.png" alt="Procedure Center">
+      </a>
+    </section>
   </section>
 
   <div class="footer">Coastal Bend Power Services • SafetyHQ</div>
 </main>
-  
+
 <script>
 (function(){
   const quarterly = document.querySelector(".quarterly-collapse");
   if(!quarterly) return;
-
   if(window.matchMedia("(max-width:620px)").matches){
     quarterly.removeAttribute("open");
   } else {
@@ -712,267 +418,146 @@ tbody tr:hover{filter:brightness(.985)}
 </script>
 
 <script>
-(function(){
-  function cleanText(value){
-    return String(value || '').replace(/\s+/g, ' ').trim();
-  }
-  function onlyNumbers(value){
-    var output = '';
-    for(var i = 0; i < value.length; i++){
-      var ch = value.charAt(i);
-      if('0123456789.-'.indexOf(ch) !== -1){ output += ch; }
-    }
-    return output;
-  }
-  function parseValue(text){
-    var value = cleanText(text);
-    var dateMatch = value.match(new RegExp('([0-9]{2})/([0-9]{2})/([0-9]{4})'));
-    if(dateMatch){
-      return new Date(Number(dateMatch[3]), Number(dateMatch[1]) - 1, Number(dateMatch[2])).getTime();
-    }
-    var overdueMatch = value.match(new RegExp('([0-9]+)d Overdue','i'));
-    if(overdueMatch){ return Number(overdueMatch[1]); }
-    var vehicleMatch = value.match(new RegExp('^V([0-9]+)$','i'));
-    if(vehicleMatch){ return Number(vehicleMatch[1]); }
-    var numText = onlyNumbers(value);
-    if(numText && value.toLowerCase() === numText.toLowerCase()){
-      return Number(numText);
-    }
-    return value.toLowerCase();
-  }
-  document.querySelectorAll('table.sortable-table').forEach(function(table){
-    var headers = table.querySelectorAll('thead th');
-    headers.forEach(function(th, index){
-      th.classList.add('sortable');
-      th.addEventListener('click', function(){
-        var tbody = table.querySelector('tbody');
-        var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
-        var ascending = !th.classList.contains('sort-asc');
-        headers.forEach(function(header){ header.classList.remove('sort-asc','sort-desc'); });
-        th.classList.add(ascending ? 'sort-asc' : 'sort-desc');
-        rows.sort(function(a,b){
-          var aValue = parseValue(a.children[index] ? a.children[index].innerText : '');
-          var bValue = parseValue(b.children[index] ? b.children[index].innerText : '');
-          if(typeof aValue === 'number' && typeof bValue === 'number'){
-            return ascending ? aValue - bValue : bValue - aValue;
-          }
-          return ascending ? String(aValue).localeCompare(String(bValue)) : String(bValue).localeCompare(String(aValue));
-        });
-        rows.forEach(function(row){ tbody.appendChild(row); });
-      });
-    });
-  });
-})();
-</script>
-<script>
-/* SafetyHQ Phase 2 live feed
-   Source: SafetyHQ_LIVE Google Sheet via Apps Script JSONP
-*/
 const SAFETYHQ_LIVE_URL = "https://script.google.com/macros/s/AKfycbyuz_gyOtJFDThQguUgC1nIRzyPYRRf50bWRXDf6UD33fytBwG_KbEDLcaLxaKiSrkFiQ/exec";
 
-function formatNumber(value){
-  if(value === undefined || value === null || value === "") return "0";
-  const num = Number(String(value).replace(/,/g,""));
-  return Number.isFinite(num) ? num.toLocaleString() : value;
+function text(id, value){
+  const el = document.getElementById(id);
+  if(el && value !== undefined && value !== null && value !== "") el.textContent = value;
 }
-
-function escapeHTML(value){
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+function esc(value){
+  return String(value ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[c]));
 }
-
-function cleanDate(value){
-  return String(value || "").replace(/-/g,"/");
+function fmtDate(value){
+  if(!value) return "";
+  const s = String(value);
+  const m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(m) return `${m[2]}/${m[3]}/${m[1]}`;
+  return s;
 }
-
-function getOverdueText(row){
-  const directDays = Number(row.daysOverdue);
-  const untilDays = Number(row.daysUntilDue);
-  if(Number.isFinite(directDays) && directDays > 0) return `${directDays}d Overdue`;
-  if(Number.isFinite(untilDays) && untilDays < 0) return `${Math.abs(untilDays)}d Overdue`;
-  return "Overdue";
+function normalizeRows(source){
+  if(!source) return [];
+  if(Array.isArray(source)) return source;
+  if(Array.isArray(source.rows)) return source.rows;
+  if(Array.isArray(source.items)) return source.items;
+  if(Array.isArray(source.values)) return source.values;
+  return [];
 }
-
-function findSectionByTitle(text){
-  const headings = Array.from(document.querySelectorAll("h2, h3, .section-title"));
-  const heading = headings.find(el => (el.textContent || "").trim().toLowerCase() === text.toLowerCase());
-  if(!heading) return null;
-  return heading.closest(".panel, details, section, .card") || heading.parentElement;
+function cell(row, keys, index){
+  if(Array.isArray(row)) return row[index] ?? "";
+  for(const k of keys){ if(row && row[k] !== undefined && row[k] !== null) return row[k]; }
+  return "";
 }
-
-function setTextByLabel(labelText, newValue){
-  const labels = Array.from(document.querySelectorAll(".metric-label, .label, .section-title, .q-label"));
-  const label = labels.find(el => (el.textContent || "").trim().toLowerCase() === labelText.toLowerCase());
-  if(!label) return;
-  const parent = label.parentElement;
-  const valueEl = parent && parent.querySelector(".metric-value, .value");
-  if(valueEl) valueEl.textContent = newValue;
+function getMetric(data, keys){
+  const sources = [data.summary, data.dashboardMetrics, data.metrics, data];
+  for(const src of sources){
+    if(!src) continue;
+    for(const key of keys){
+      if(src[key] !== undefined && src[key] !== null && src[key] !== "") return src[key];
+    }
+  }
+  return "";
 }
+function renderMonthly(rows){
+  const tbodyOpen = document.getElementById("monthly-open-body");
+  const tbodyComplete = document.getElementById("monthly-complete-body");
+  if(!tbodyOpen || !tbodyComplete || !rows.length) return;
 
-function renderMonthlyItems(items){
-  const monthlySection = findSectionByTitle("Monthly Safety Equipment Checklist Status");
-  if(!monthlySection) return;
-
-  const overdue = items.filter(x => String(x.status || "").trim() === "Overdue / Missing");
-  const completed = items.filter(x => String(x.status || "").trim() === "Complete");
-
-  const pills = monthlySection.querySelectorAll(".summary-pill, .count-pill");
-  if(pills[0]) pills[0].textContent = `${overdue.length} Overdue / Missing`;
-  if(pills[1]) pills[1].textContent = `${completed.length} Completed`;
-
-  const layout = monthlySection.querySelector(".status-layout");
-  if(!layout) return;
-
-  const overdueRows = overdue.map(row => `
-    <tr class="row-red">
-      <td>${escapeHTML(row.employee)}</td>
-      <td>${escapeHTML(row.eq)}</td>
-      <td><span class="pill pill-red">${getOverdueText(row)}</span></td>
-      <td>${escapeHTML(row.notes || "")}</td>
-    </tr>`).join("") || `<tr><td colspan="4">No overdue or missing checklist items.</td></tr>`;
-
-  const completedRows = completed.map(row => `
-    <tr class="row-green">
-      <td>${escapeHTML(row.employee)}</td>
-      <td>${escapeHTML(row.eq)}</td>
-      <td><span class="pill pill-green">${escapeHTML(cleanDate(row.completionDate))}</span></td>
-    </tr>`).join("") || `<tr><td colspan="3">No completed checklist items.</td></tr>`;
-
-  layout.innerHTML = `
-    <section class="status-card">
-      <div class="status-card-header">
-        <h3>Overdue / Missing</h3>
-        <span class="status-count">${overdue.length} items</span>
-      </div>
-      <div class="table-wrap">
-        <table class="sortable-table monthly-table">
-          <thead><tr><th>Employee</th><th>EQ #</th><th>Status</th><th>Notes</th></tr></thead>
-          <tbody>${overdueRows}</tbody>
-        </table>
-      </div>
-    </section>
-    <section class="status-card mobile-secondary-section">
-      <div class="status-card-header">
-        <h3>Completed</h3>
-        <span class="status-count">${completed.length} items</span>
-      </div>
-      <div class="table-wrap">
-        <table class="sortable-table monthly-table">
-          <thead><tr><th>Employee</th><th>EQ #</th><th>Completed</th></tr></thead>
-          <tbody>${completedRows}</tbody>
-        </table>
-      </div>
-    </section>`;
-}
-
-function renderTrainingItems(items){
-  const trainingSection = findSectionByTitle("Training Status");
-  if(!trainingSection) return;
-
-  const sortedItems = [...items].sort((a, b) => {
-    const aStatus = String(a.status || "").trim();
-    const bStatus = String(b.status || "").trim();
-
-    const rank = status => {
-      if(status === "Overdue") return 1;
-      if(status === "Due Within 7 Days") return 2;
-      return 3;
-    };
-
-    const parseDueDate = value => {
-      if(!value) return new Date("2999-12-31");
-      const text = String(value).trim().replace(/-/g,"/");
-      const parts = text.split("/");
-      if(parts.length === 3){
-        const mm = Number(parts[0]);
-        const dd = Number(parts[1]);
-        const yyyy = Number(parts[2]);
-        if(Number.isFinite(mm) && Number.isFinite(dd) && Number.isFinite(yyyy)){
-          return new Date(yyyy, mm - 1, dd);
-        }
-      }
-      const parsed = new Date(value);
-      return Number.isNaN(parsed.getTime()) ? new Date("2999-12-31") : parsed;
-    };
-
-    return rank(aStatus) - rank(bStatus) || parseDueDate(a.dueDate) - parseDueDate(b.dueDate);
+  const filtered = rows.filter(r => {
+    const emp = cell(r,["employee","Employee"],0);
+    return emp && emp !== "Employee";
+  });
+  const open = [];
+  const complete = [];
+  filtered.forEach(r => {
+    const employee = cell(r,["employee","Employee"],0);
+    const eq = cell(r,["eq","eqNumber","EQ #","vehicle"],1);
+    const completeDate = cell(r,["completionDate","completedAt","Completion Date"],3);
+    const status = cell(r,["dashboardStatus","status","Dashboard Status"],4);
+    const days = cell(r,["daysOverdue","Days Overdue"],5);
+    const notes = cell(r,["notes","Notes"],6);
+    const isComplete = String(status).toLowerCase().includes("complete") || !!completeDate;
+    const item = {employee,eq,completeDate,status,days,notes};
+    if(isComplete) complete.push(item); else open.push(item);
   });
 
-  const overdue = sortedItems.filter(x => String(x.status || "").trim() === "Overdue");
-  const dueSoon = sortedItems.filter(x => String(x.status || "").trim() === "Due Within 7 Days");
-  const neutral = sortedItems.filter(x => !["Overdue", "Due Within 7 Days"].includes(String(x.status || "").trim()));
+  tbodyOpen.innerHTML = open.length ? open.map(r => `<tr class="row-red"><td>${esc(r.employee)}</td><td class="eq">${esc(r.eq)}</td><td><span class="pill pill-red${Number(r.days)>10?' severe':''}">${esc(r.days || '')}${r.days ? 'd Overdue' : esc(r.status || 'Overdue / Missing')}</span>${r.notes ? ' ' + esc(r.notes) : ''}</td></tr>`).join("") : `<tr><td colspan="3"><div class="empty-state">No overdue or missing monthly checklists.</div></td></tr>`;
+  tbodyComplete.innerHTML = complete.length ? complete.map(r => `<tr class="row-green"><td>${esc(r.employee)}</td><td class="eq">${esc(r.eq)}</td><td><span class="pill pill-green">${esc(fmtDate(r.completeDate))}</span></td></tr>`).join("") : `<tr><td colspan="3"><div class="empty-state">No completed checklists listed.</div></td></tr>`;
 
-  const pills = trainingSection.querySelectorAll(".summary-pill, .count-pill");
-  if(pills[0]) pills[0].textContent = `${Number(window.safetyHQSummary?.trainingOverdue ?? overdue.length)} Overdue`;
-  if(pills[1]) pills[1].textContent = `${Number(window.safetyHQSummary?.trainingDueSoon ?? dueSoon.length)} Due Within 7 Days`;
-
-  const table = trainingSection.querySelector("table");
-  if(!table) return;
-
-  table.innerHTML = `
-    <thead><tr><th>Employee</th><th>Training</th><th>Status</th></tr></thead>
-    <tbody>
-      ${overdue.map(row => `
-        <tr class="row-red">
-          <td>${escapeHTML(row.employee)}</td>
-          <td>${escapeHTML(row.training || "Training title missing")}</td>
-          <td><span class="pill pill-red">${getOverdueText(row)}</span></td>
-        </tr>`).join("")}
-      ${dueSoon.map(row => `
-        <tr class="row-orange">
-          <td>${escapeHTML(row.employee)}</td>
-          <td>${escapeHTML(row.training || "Training title missing")}</td>
-          <td><span class="pill pill-orange">Due ${escapeHTML(cleanDate(row.dueDate))}</span></td>
-        </tr>`).join("")}
-      ${neutral.map(row => `
-        <tr class="row-neutral">
-          <td>${escapeHTML(row.employee)}</td>
-          <td>${escapeHTML(row.training || "Training title missing")}</td>
-          <td><span class="pill pill-neutral">Due ${escapeHTML(cleanDate(row.dueDate))}</span></td>
-        </tr>`).join("")}
-    </tbody>`;
+  text("monthly-open-count", `${open.length} Overdue / Missing`);
+  text("monthly-complete-count", `${complete.length} Completed`);
+  text("monthly-open-small", `${open.length} item${open.length===1?'':'s'}`);
+  text("monthly-complete-small", `${complete.length} item${complete.length===1?'':'s'}`);
 }
-
+function renderTraining(rows){
+  const tbody = document.getElementById("training-body");
+  if(!tbody || !rows.length) return;
+  const filtered = rows.filter(r => {
+    const emp = cell(r,["employee","Employee"],0);
+    const req = cell(r,["requirementName","requirement","training","Requirement"],1);
+    return emp && req && emp !== "Employee";
+  });
+  let overdue = 0;
+  let soon = 0;
+  tbody.innerHTML = filtered.map(r => {
+    const employee = cell(r,["employee","Employee"],0);
+    const req = cell(r,["requirementName","requirement","training","Requirement"],1);
+    const due = cell(r,["dueDate","Due Date"],3);
+    const dashboardStatus = cell(r,["dashboardStatus","Dashboard Status","status"],5) || cell(r,["status"],2);
+    const statusLower = String(dashboardStatus).toLowerCase();
+    const rowClass = statusLower.includes("overdue") ? "row-red" : statusLower.includes("within 7") ? "row-orange" : "row-neutral";
+    const pillClass = statusLower.includes("overdue") ? "pill-red" : statusLower.includes("within 7") ? "pill-orange" : "pill-neutral";
+    if(statusLower.includes("overdue")) overdue++;
+    if(statusLower.includes("within 7")) soon++;
+    return `<tr class="${rowClass}"><td>${esc(employee)}</td><td>${esc(req)}</td><td><span class="pill ${pillClass}">Due ${esc(fmtDate(due))}</span></td></tr>`;
+  }).join("") || `<tr><td colspan="3"><div class="empty-state">No training items listed.</div></td></tr>`;
+  text("training-overdue-count", `${overdue} Overdue`);
+  text("training-soon-count", `${soon} Due Within 7 Days`);
+}
+function updateQuarter(q, recordables, manHours){
+  const rec = document.querySelector(`[data-quarter="${q}"][data-field="recordables"]`);
+  const hrs = document.querySelector(`[data-quarter="${q}"][data-field="manHours"]`);
+  if(rec && recordables !== undefined && recordables !== "") rec.textContent = recordables;
+  if(hrs && manHours !== undefined && manHours !== "") hrs.textContent = manHours;
+}
 function updateSafetyHQDashboard(data){
-  const summary = data.summary || {};
-  window.safetyHQSummary = summary;
+  if(!data || typeof data !== "object") return;
+  const lastUpdate = getMetric(data,["lastUpdate","Last Update","updated","timestamp"]);
+  if(lastUpdate) text("last-update", `Last Update: ${lastUpdate}`);
+  text("emr", getMetric(data,["emr","EMR"]));
+  text("ytd-man-hours", getMetric(data,["ytdManHours","totalManHours","YTD Man Hours","Total Man Hours","manHours"]));
 
-  const updatedLine = document.querySelector(".updated-line");
-if(updatedLine && summary.lastUpdate){
-  updatedLine.textContent = `Last Update: ${summary.lastUpdate}`;
+  const month = getMetric(data,["currentMonth","Current Month"]);
+  const due = getMetric(data,["monthlyDueDate","Monthly Due Date"]);
+  if(month || due) text("monthly-note", `${month || 'Monthly'} checklists due ${fmtDate(due)}. Required for all employees assigned a company vehicle.`);
+
+  const quarters = data.quarters || data.quarterly || data.oshaQuarters || data.oshaSnapshot;
+  if(Array.isArray(quarters)){
+    quarters.forEach(q => updateQuarter(q.quarter || q.Quarter, q.recordables || q.Recordables, q.manHours || q["Man Hours"]));
+  } else if(quarters && typeof quarters === "object"){
+    ["Q1","Q2","Q3","Q4"].forEach(q => {
+      const item = quarters[q] || quarters[q.toLowerCase()];
+      if(item) updateQuarter(q, item.recordables || item.Recordables, item.manHours || item["Man Hours"]);
+    });
+  }
+
+  const monthlyRows = normalizeRows(data.monthlyStatus || data.monthly || data.checklistStatus || data.checklists || data["Monthly Status"]);
+  renderMonthly(monthlyRows);
+  const trainingRows = normalizeRows(data.trainingStatus || data.training || data.trainingItems || data.inTrainingWindowItems || data["Training Status"]);
+  renderTraining(trainingRows);
 }
-
-  setTextByLabel("Man Hours", formatNumber(summary.manHours));
-  setTextByLabel("Total Man Hours", formatNumber(summary.manHours));
-  setTextByLabel("EMR", summary.emr || "");
-  setTextByLabel("YTD Recordables", formatNumber(summary.ytdRecordables));
-
-  renderMonthlyItems(data.monthlyItems || []);
-  renderTrainingItems(data.trainingItems || []);
+window.safetyHQLiveCallback = updateSafetyHQDashboard;
+function loadSafetyHQLive(){
+  const s = document.createElement("script");
+  s.src = SAFETYHQ_LIVE_URL + "?callback=safetyHQLiveCallback&v=" + Date.now();
+  s.async = true;
+  s.onerror = () => console.warn("SafetyHQ live data failed to load; using page fallback data.");
+  document.body.appendChild(s);
+  setTimeout(() => { try { s.remove(); } catch(e){} }, 30000);
 }
-
-function loadSafetyHQLiveData(){
-  const callbackName = "safetyHQLiveCallback_" + Date.now();
-  window[callbackName] = function(data){
-    updateSafetyHQDashboard(data);
-    delete window[callbackName];
-  };
-
-  const script = document.createElement("script");
-  script.src = SAFETYHQ_LIVE_URL + "?callback=" + callbackName + "&v=" + Date.now();
-  script.onerror = function(){
-    console.warn("SafetyHQ live feed could not be loaded. Static dashboard values remain visible.");
-  };
-  document.body.appendChild(script);
-}
-
-loadSafetyHQLiveData();
-setInterval(loadSafetyHQLiveData, 5 * 60 * 1000);
+loadSafetyHQLive();
+setInterval(loadSafetyHQLive, 5 * 60 * 1000);
 </script>
+
 <script>
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
